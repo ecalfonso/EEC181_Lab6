@@ -108,11 +108,6 @@ wire		[9:0]		oVGA_R;   				//	VGA Red[9:0]
 wire		[9:0]		oVGA_G;	 				//	VGA Green[9:0]
 wire		[9:0]		oVGA_B;   				//	VGA Blue[9:0]
 
-//hps
-wire [9:0] HPS_R;
-wire [9:0] HPS_G;
-wire [9:0] HPS_B;
-
 //=======================================================
 //  Structural coding
 //=======================================================
@@ -155,20 +150,28 @@ begin
 	rCCD_FVAL	<=	CCD_FVAL;
 end
 
-reg red;
-reg blu;
-reg gre;
+//hps
+wire [9:0] HPS_R;
+wire [9:0] HPS_G;
+wire [9:0] HPS_B;
+
+reg [9:0] red;
+reg [9:0] blu;
+reg [9:0] gre;
+
+always@ (posedge VGA_CTRL_CLK)
+begin
+	red <= HPS_R;
+	gre <= HPS_G;
+	blu <= HPS_B;
+end
 
 VGA_Controller		u1	(	//	Host Side
 							.oRequest(Read),				// Read Request is sent to the SDRAM when the VGA pixel scan is at the correct x and y pixel location in the active area
-
-							//.iRed(Read_DATA2[9:0]),
-							//.iGreen({Read_DATA1[14:10],Read_DATA2[14:10]}),
-							//.iBlue(Read_DATA1[9:0]),
 							
-							.iRed(HPS_R),
-							.iGreen(HPS_G),
-							.iBlue(HPS_B),
+							.iRed(red),
+							.iGreen(gre),
+							.iBlue(blu),
 							
 							//	VGA Side
 							.oVGA_R(oVGA_R),
