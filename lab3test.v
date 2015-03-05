@@ -150,28 +150,17 @@ begin
 	rCCD_FVAL	<=	CCD_FVAL;
 end
 
-//hps
+// hps
 wire [9:0] HPS_R;
 wire [9:0] HPS_G;
 wire [9:0] HPS_B;
 
-reg [9:0] red;
-reg [9:0] blu;
-reg [9:0] gre;
-
-always@ (posedge VGA_CTRL_CLK)
-begin
-	red <= HPS_R;
-	gre <= HPS_G;
-	blu <= HPS_B;
-end
-
 VGA_Controller		u1	(	//	Host Side
 							.oRequest(Read),				// Read Request is sent to the SDRAM when the VGA pixel scan is at the correct x and y pixel location in the active area
 							
-							.iRed(red),
-							.iGreen(gre),
-							.iBlue(blu),
+							.iRed(Read_DATA2[9:0]),
+							.iGreen({Read_DATA1[14:10],Read_DATA2[14:10]}),
+							.iBlue(Read_DATA1[9:0]),
 							
 							//	VGA Side
 							.oVGA_R(oVGA_R),
@@ -330,12 +319,12 @@ I2C_CCD_Config 		u8	(
 		   .system_ref_clk_clk       (CLOCK_50),       //      system_ref_clk.clk
         //.sdram_clk_1_clk          (<connected-to-sdram_clk_1_clk>),          //         sdram_clk_1.clk
         .system_ref_reset_reset   (1'b0),    //    system_ref_reset.reset
-		  .hps_rin_export           (Read_DATA2[9:0]),           //             hps_rin.export
-        .hps_gin_export           ({Read_DATA1[14:10],Read_DATA2[14:10]}),           //             hps_gin.export
-        .hps_bin_export           (Read_DATA1[9:0]),           //             hps_bin.export
-        .hps_rout_export          (HPS_R),          //            hps_rout.export
-        .hps_gout_export          (HPS_G),          //            hps_gout.export
-        .hps_bout_export          (HPS_B),          //            hps_bout.export
+		  //.hps_rin_export           (Read_DATA2[9:0]),           //             hps_rin.export
+        //.hps_gin_export           ({Read_DATA1[14:10],Read_DATA2[14:10]}),           //             hps_gin.export
+        //.hps_bin_export           (Read_DATA1[9:0]),           //             hps_bin.export
+        //.hps_rout_export          (HPS_R),          //            hps_rout.export
+        //.hps_gout_export          (HPS_G),          //            hps_gout.export
+        //.hps_bout_export          (HPS_B),          //            hps_bout.export
         .fvalue_export            (VGA_CTRL_CLK),             //              fvalue.export
     );
 	

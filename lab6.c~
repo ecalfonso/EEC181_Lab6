@@ -28,7 +28,15 @@ int main() {
 	*(Start) = 1;
 	while(1)
 	{
-		// We just need the HPS to start the camera
+		avg = (*(Rin) + *(Gin) + *(Bin))/3;
+		*(Rout) = avg;
+		*(Gout) = avg;
+		*(Bout) = avg;
+		
+		while(*(fVal) == 1)
+		{
+		}
+		
 	}
 	
 
