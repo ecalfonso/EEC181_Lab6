@@ -222,6 +222,12 @@ SEG7_LUT_8 			u5	(
 							.iDIG (Frame_Cont[31:0])
 						);
 
+/* Address in SDRAM for the camera image */
+parameter IMG1_START 	= 0;
+parameter IMG1_END 		= 307200; 	// 640*480
+parameter IMG2_START 	= 307204;	// 640*480 + 1'h4
+parameter IMG2_END		= 614404;	// 640*480 + 1'h4 + 640*480
+						
 Sdram_Control_4Port	u7	(	
 							//	HOST Side
 						   .RESET_N(1'b1),
@@ -230,8 +236,8 @@ Sdram_Control_4Port	u7	(
 							//	FIFO Write Side 1
 							.WR1_DATA({1'b0,sCCD_G[11:7],sCCD_B[11:2]}),
 							.WR1(sCCD_DVAL),
-							.WR1_ADDR(0),					// Memory start for one section of the memory
-							.WR1_MAX_ADDR(640*480),
+							.WR1_ADDR(IMG1_START),					// Memory start for one section of the memory
+							.WR1_MAX_ADDR(IMG1_END),
 							.WR1_LENGTH(256),
 							.WR1_LOAD(!DLY_RST_0),
 							.WR1_CLK(~CCD_PIXCLK),		// This clock is directly from the CCD Camera Module, the Camera controls the write to memory
@@ -240,8 +246,8 @@ Sdram_Control_4Port	u7	(
 							//	FIFO Write Side 2
 							.WR2_DATA(	{1'b0,sCCD_G[6:2],sCCD_R[11:2]}),
 							.WR2(sCCD_DVAL),
-							.WR2_ADDR(640*480 + 1'h4),		// Memory start for the second section of memory - why can we not write data into one memory block?
-							.WR2_MAX_ADDR(640*480 + 640*480 + 1'h4),
+							.WR2_ADDR(IMG2_START),		// Memory start for the second section of memory - why can we not write data into one memory block?
+							.WR2_MAX_ADDR(IMG2_END),
 							.WR2_LENGTH(256),
 							.WR2_LOAD(!DLY_RST_0),
 							.WR2_CLK(~CCD_PIXCLK),
@@ -250,8 +256,8 @@ Sdram_Control_4Port	u7	(
 							//	FIFO Read Side 1
 						   .RD1_DATA(Read_DATA1),
 				        	.RD1(Read),
-				        	.RD1_ADDR(0),
-							.RD1_MAX_ADDR(640*480),
+				        	.RD1_ADDR(IMG1_START),
+							.RD1_MAX_ADDR(IMG1_END),
 							.RD1_LENGTH(256),
 							.RD1_LOAD(!DLY_RST_0),
 							.RD1_CLK(~VGA_CTRL_CLK),
@@ -259,8 +265,8 @@ Sdram_Control_4Port	u7	(
 							//	FIFO Read Side 2
 						   .RD2_DATA(Read_DATA2),
 							.RD2(Read),
-							.RD2_ADDR(640*480 + 1'h4), // Memory start address
-							.RD2_MAX_ADDR(640*480 + 640*480 + 1'h4),	// Allocate enough space for whole 640 x 480 display
+							.RD2_ADDR(IMG2_START), // Memory start address
+							.RD2_MAX_ADDR(IMG2_END),	// Allocate enough space for whole 640 x 480 display
 							.RD2_LENGTH(256),	// 8 bits long data storage
 				        	.RD2_LOAD(!DLY_RST_0),
 							.RD2_CLK(~VGA_CTRL_CLK),
