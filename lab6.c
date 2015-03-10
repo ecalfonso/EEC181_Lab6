@@ -1,36 +1,24 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 
+volatile int * iStart	= (int *) 0xFF2000C0;
+volatile int * iData	= (int *) 0xFF200100;
+volatile int * oData	= (int *) 0xFF200080;
+volatile int * oVGAMux	= (int *) 0xFF2000A0;
+volatile int * oRAWMux	= (int *) 0xFF200040;
+volatile int * oHPSClk	= (int *) 0xFF200060;
+volatile int * iGeneral1	= (int *) 0xFF2000f0;
+volatile int * iGeneral2	= (int *) 0xFF2000e0;
+volatile int * oGeneral1	= (int *) 0xFF200020;
+volatile int * oGeneral2	= (int *) 0xFF200000;
 
-volatile int * Start      = (int * )0xFF200070;
-volatile int * Rin      = (int * )0xFF200040;
-volatile int * Gin      = (int * )0xFF200050;
-volatile int * Bin      = (int * )0xFF200060;
-volatile int * Rout      = (int * )0xFF200010;
-volatile int * Gout     = (int * )0xFF200020;
-volatile int * Bout      = (int * )0xFF200030;
-volatile int * fVal      = (int * )0xFF200000;
-
-
-void delay(int v) {
-	int c, d;
-	int max;
-	max = 10 * v;
-	for(c = 1; c <= max; c++)
-		{}
-	return 0;
-}
-
-int main() {
+void main(void) {
 	int avg;
 	
-	*(Start) = 1;
+	// Start the camera
+	*(iStart) = 1;
+	
 	while(1)
 	{
-		// We just need the HPS to start the camera
+		
 	}
-	
-
-	return 0;
 }

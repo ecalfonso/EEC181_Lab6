@@ -71,9 +71,9 @@ reg		[12:0]	mCCD_G;
 reg		[11:0]	mCCD_B;
 reg				mDVAL;
 
-assign	oRed	=	mCCD_R[11:0];
-assign	oGreen	=	mCCD_G[12:1];
-assign	oBlue	=	mCCD_B[11:0];
+assign	oRed		=	((mCCD_R[11:0] + mCCD_G[12:1] + mCCD_B[11:0]) >> 1) + (mCCD_R[11:0] + mCCD_G[12:1] + mCCD_B[11:0]);
+assign	oGreen	=	((mCCD_R[11:0] + mCCD_G[12:1] + mCCD_B[11:0]) >> 1) + (mCCD_R[11:0] + mCCD_G[12:1] + mCCD_B[11:0]);
+assign	oBlue		=	((mCCD_R[11:0] + mCCD_G[12:1] + mCCD_B[11:0]) >> 1) + (mCCD_R[11:0] + mCCD_G[12:1] + mCCD_B[11:0]);
 assign	oDVAL	=	mDVAL;
 
 Line_Buffer 	u0	(	.clken(iDVAL),

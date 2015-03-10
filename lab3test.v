@@ -70,7 +70,7 @@ module lab3test(
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-	wire softwareWire;	
+
 //	CCD
 wire	[11:0]	CCD_DATA;
 wire			CCD_SDAT;
@@ -150,14 +150,13 @@ begin
 	rCCD_FVAL	<=	CCD_FVAL;
 end
 
-// hps
-wire [9:0] HPS_R;
-wire [9:0] HPS_G;
-wire [9:0] HPS_B;
+/* Our custom wires/regs */
+wire HPS_Start_Signal;
+
 
 VGA_Controller		u1	(	//	Host Side
 							.oRequest(Read),				// Read Request is sent to the SDRAM when the VGA pixel scan is at the correct x and y pixel location in the active area
-							
+
 							.iRed(Read_DATA2[9:0]),
 							.iGreen({Read_DATA1[14:10],Read_DATA2[14:10]}),
 							.iBlue(Read_DATA1[9:0]),
@@ -192,8 +191,8 @@ CCD_Capture			u3	(
 							.iDATA(rCCD_DATA),
 							.iFVAL(rCCD_FVAL),
 							.iLVAL(rCCD_LVAL),
-							.iSTART(softwareWire),
-							.iEND(!KEY[2]),
+							.iSTART(HPS_Start_Signal),
+							.iEND(!HPS_Start_Signal),
 							.iCLK(CCD_PIXCLK),
 							.iRST(DLY_RST_2)
 						);
@@ -315,17 +314,30 @@ I2C_CCD_Config 		u8	(
         .memory_mem_odt     (HPS_DDR3_ODT),     //            .mem_odt
         .memory_mem_dm      (HPS_DDR3_DM),      //            .mem_dm
         .memory_oct_rzqin   (HPS_DDR3_RZQ),   //            .oct_rzqin
-        .startsignal_export       (softwareWire),        //         startsignal.export
 		   .system_ref_clk_clk       (CLOCK_50),       //      system_ref_clk.clk
         //.sdram_clk_1_clk          (<connected-to-sdram_clk_1_clk>),          //         sdram_clk_1.clk
         .system_ref_reset_reset   (1'b0),    //    system_ref_reset.reset
-		  //.hps_rin_export           (Read_DATA2[9:0]),           //             hps_rin.export
-        //.hps_gin_export           ({Read_DATA1[14:10],Read_DATA2[14:10]}),           //             hps_gin.export
-        //.hps_bin_export           (Read_DATA1[9:0]),           //             hps_bin.export
-        //.hps_rout_export          (HPS_R),          //            hps_rout.export
-        //.hps_gout_export          (HPS_G),          //            hps_gout.export
-        //.hps_bout_export          (HPS_B),          //            hps_bout.export
-        .fvalue_export            (VGA_CTRL_CLK),             //              fvalue.export
+		  
+		  /* Custom HPS I/O */
+		  /* Start signal from HPS */
+		  .ostartsignal_1b_export   (HPS_Start_Signal),
+		  
+		  /* I/O for taking in and throwing out data */
+		  //.idata_32b_export         (), 
+        //.odata_32b_export         (), 
+		  
+		  /* Select lines for MUX to control SDRAM Controller */
+        //.ovgamuxselect_1b_export  (), 
+        //.orawmuxselect_1b_export  (), 
+		  
+		  /* 1Bit line to simulate a HPS generated clock */
+        //.o_hps_clk_export         (), 
+		  
+		  /* General I/O */
+        //.general_input1_export    (), 
+        //.general_output_1_export  (), 
+        //.general_input2_export    (), 
+        //.general_out_2_export     ()
     );
 	
 endmodule

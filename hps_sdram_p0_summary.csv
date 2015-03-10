@@ -16,7 +16,7 @@ Path, Setup Margin, Hold Margin
 "Postamble (Slow 1100mV 0C Model)",0.815,0.815
 "Read Capture (Slow 1100mV 0C Model)",0.318,0.27
 "Write (Slow 1100mV 0C Model)",0.428,0.428
-"Address Command (Fast 1100mV 85C Model)",1.605,1.306
+"Address Command (Fast 1100mV 85C Model)",1.605,1.307
 "Bus Turnaround Time (Fast 1100mV 85C Model)",3.91,--
 "Core (Fast 1100mV 85C Model)",2.973,0.084
 "Core Recovery/Removal (Fast 1100mV 85C Model)",5.423,0.984
