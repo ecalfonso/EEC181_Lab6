@@ -300,7 +300,6 @@ I2C_CCD_Config 		u8	(
 	mysystem u0 (
          .sdram_clk_clk                (sdram_ctrl_clk),                //             sdram_clk.clk
         .dram_clk_clk                 (DRAM_CLK),                 //              dram_clk.clk
-        //.d5m_clk_clk                  (CCD_MCLK),                  //               d5m_clk.clk
         .vga_clk_clk                  (VGA_CTRL_CLK),                   //               vga_clk.clk
         .system_pll_0_refclk_clk      (CLOCK_50),      //   system_pll_0_refclk.clk
         .system_pll_0_reset_reset     (1'b0),      //    system_pll_0_reset.reset
@@ -321,29 +320,30 @@ I2C_CCD_Config 		u8	(
         .memory_mem_dm      (HPS_DDR3_DM),      //            .mem_dm
         .memory_oct_rzqin   (HPS_DDR3_RZQ),   //            .oct_rzqin
 		   .system_ref_clk_clk       (CLOCK_50),       //      system_ref_clk.clk
-        //.sdram_clk_1_clk          (<connected-to-sdram_clk_1_clk>),          //         sdram_clk_1.clk
         .system_ref_reset_reset   (1'b0),    //    system_ref_reset.reset
 		  
 		  /* Custom HPS I/O */
 		  /* Start signal from HPS */
-		  .ostartsignal_1b_export   (HPS_Start_Signal),
+		  .o_startsignal_1b_export  (HPS_Start_Signal),
 		  
 		  /* I/O for taking in and throwing out data */
-		  //.idata_32b_export         (), 
-        //.odata_32b_export         (), 
+		  //.i_data_32b_export        (),
+        //.o_data_32b_export        (), 
 		  
-		  /* Select lines for MUX to control SDRAM Controller */
-        //.ovgamuxselect_1b_export  (), 
-        //.orawmuxselect_1b_export  (), 
-		  
-		  /* 1Bit line to simulate a HPS generated clock */
-        //.o_hps_clk_export         (), 
+		  /* Select line for when HPS takes over SDRAM controller */ 
+		  //.o_muxselect_1b_export    (),
+        
+		  /* Lines for when HPS is ready to write/validate o_data
+				and when ready to read/ready i_data */
+		  //.o_hps_write_export       (),
+        //.o_hps_read_export        (),
 		  
 		  /* General I/O */
         //.general_input1_export    (), 
         //.general_output_1_export  (), 
         //.general_input2_export    (), 
         //.general_out_2_export     ()
+		  
     );
 	
 endmodule

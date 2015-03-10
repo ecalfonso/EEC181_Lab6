@@ -2,7 +2,7 @@ set_global_assignment -entity "mysystem" -library "mysystem" -name IP_TOOL_NAME 
 set_global_assignment -entity "mysystem" -library "mysystem" -name IP_TOOL_VERSION "13.1"
 set_global_assignment -entity "mysystem" -library "mysystem" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "mysystem" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../mysystem.sopcinfo"]
-set_global_assignment -entity "mysystem" -library "mysystem" -name SLD_INFO "QSYS_NAME mysystem HAS_SOPCINFO 1 GENERATION_ID 1425952762"
+set_global_assignment -entity "mysystem" -library "mysystem" -name SLD_INFO "QSYS_NAME mysystem HAS_SOPCINFO 1 GENERATION_ID 1426012860"
 set_global_assignment -library "mysystem" -name MISC_FILE [file join $::quartus(qip_path) "../../mysystem.cmp"]
 set_global_assignment -library "mysystem" -name SLD_FILE [file join $::quartus(qip_path) "mysystem.regmap"]
 set_global_assignment -library "mysystem" -name MISC_FILE [file join $::quartus(qip_path) "../../C"]
@@ -53,7 +53,7 @@ set_global_assignment -library "mysystem" -name SYSTEMVERILOG_FILE [file join $:
 set_global_assignment -library "mysystem" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_avalon_st_pipeline_base.v"]
 set_global_assignment -library "mysystem" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/mysystem_mm_interconnect_0_id_router.sv"]
 set_global_assignment -library "mysystem" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/mysystem_mm_interconnect_0_addr_router.sv"]
-set_global_assignment -library "mysystem" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/mysystem_VGAMuxSelect1b.v"]
+set_global_assignment -library "mysystem" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/mysystem_MuxSelect1b.v"]
 set_global_assignment -library "mysystem" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/mysystem_data_out32b.v"]
 set_global_assignment -library "mysystem" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/mysystem_data_in32b.v"]
 set_global_assignment -library "mysystem" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/mysystem_sys_sdram_pll_0.v"]
@@ -196,9 +196,9 @@ set_global_assignment -entity "mysystem_mm_interconnect_0_id_router" -library "m
 set_global_assignment -entity "mysystem_mm_interconnect_0_addr_router" -library "mysystem" -name IP_TOOL_NAME "altera_merlin_router"
 set_global_assignment -entity "mysystem_mm_interconnect_0_addr_router" -library "mysystem" -name IP_TOOL_VERSION "13.1"
 set_global_assignment -entity "mysystem_mm_interconnect_0_addr_router" -library "mysystem" -name IP_TOOL_ENV "Qsys"
-set_global_assignment -entity "mysystem_VGAMuxSelect1b" -library "mysystem" -name IP_TOOL_NAME "altera_avalon_pio"
-set_global_assignment -entity "mysystem_VGAMuxSelect1b" -library "mysystem" -name IP_TOOL_VERSION "13.1"
-set_global_assignment -entity "mysystem_VGAMuxSelect1b" -library "mysystem" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -entity "mysystem_MuxSelect1b" -library "mysystem" -name IP_TOOL_NAME "altera_avalon_pio"
+set_global_assignment -entity "mysystem_MuxSelect1b" -library "mysystem" -name IP_TOOL_VERSION "13.1"
+set_global_assignment -entity "mysystem_MuxSelect1b" -library "mysystem" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -entity "mysystem_data_out32b" -library "mysystem" -name IP_TOOL_NAME "altera_avalon_pio"
 set_global_assignment -entity "mysystem_data_out32b" -library "mysystem" -name IP_TOOL_VERSION "13.1"
 set_global_assignment -entity "mysystem_data_out32b" -library "mysystem" -name IP_TOOL_ENV "Qsys"

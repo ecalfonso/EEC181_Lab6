@@ -44,7 +44,7 @@
          type = "int";
       }
    }
-   element HPS_CLK1b
+   element HPS_Read1b
    {
       datum _sortIndex
       {
@@ -52,7 +52,7 @@
          type = "int";
       }
    }
-   element RAWMuxSelect1b
+   element HPS_Write1b
    {
       datum _sortIndex
       {
@@ -60,7 +60,7 @@
          type = "int";
       }
    }
-   element VGAMuxSelect1b
+   element MuxSelect1b
    {
       datum _sortIndex
       {
@@ -116,31 +116,23 @@
          type = "int";
       }
    }
-   element General_out.s1
+   element General_out_0.s1
    {
       datum baseAddress
       {
-         value = "32";
+         value = "0";
          type = "String";
       }
    }
-   element VGAMuxSelect1b.s1
+   element startSignal1b.s1
    {
       datum baseAddress
       {
-         value = "160";
+         value = "192";
          type = "String";
       }
    }
-   element HPS_CLK1b.s1
-   {
-      datum baseAddress
-      {
-         value = "96";
-         type = "String";
-      }
-   }
-   element RAWMuxSelect1b.s1
+   element HPS_Write1b.s1
    {
       datum baseAddress
       {
@@ -156,35 +148,11 @@
          type = "String";
       }
    }
-   element startSignal1b.s1
+   element HPS_Read1b.s1
    {
       datum baseAddress
       {
-         value = "192";
-         type = "String";
-      }
-   }
-   element onchip_memory2_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "String";
-      }
-   }
-   element General_in.s1
-   {
-      datum baseAddress
-      {
-         value = "240";
-         type = "String";
-      }
-   }
-   element General_in_0.s1
-   {
-      datum baseAddress
-      {
-         value = "224";
+         value = "96";
          type = "String";
       }
    }
@@ -196,11 +164,43 @@
          type = "String";
       }
    }
-   element General_out_0.s1
+   element General_in.s1
+   {
+      datum baseAddress
+      {
+         value = "240";
+         type = "String";
+      }
+   }
+   element onchip_memory2_0.s1
    {
       datum baseAddress
       {
          value = "0";
+         type = "String";
+      }
+   }
+   element General_in_0.s1
+   {
+      datum baseAddress
+      {
+         value = "224";
+         type = "String";
+      }
+   }
+   element MuxSelect1b.s1
+   {
+      datum baseAddress
+      {
+         value = "160";
+         type = "String";
+      }
+   }
+   element General_out.s1
+   {
+      datum baseAddress
+      {
+         value = "32";
          type = "String";
       }
    }
@@ -278,7 +278,7 @@
    dir="end" />
  <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
  <interface
-   name="ostartsignal_1b"
+   name="o_startsignal_1b"
    internal="startSignal1b.external_connection"
    type="conduit"
    dir="end" />
@@ -298,28 +298,28 @@
    type="reset"
    dir="end" />
  <interface
-   name="idata_32b"
+   name="i_data_32b"
    internal="data_in32b.external_connection"
    type="conduit"
    dir="end" />
  <interface
-   name="odata_32b"
+   name="o_data_32b"
    internal="data_out32b.external_connection"
    type="conduit"
    dir="end" />
  <interface
-   name="ovgamuxselect_1b"
-   internal="VGAMuxSelect1b.external_connection"
+   name="o_muxselect_1b"
+   internal="MuxSelect1b.external_connection"
    type="conduit"
    dir="end" />
  <interface
-   name="orawmuxselect_1b"
-   internal="RAWMuxSelect1b.external_connection"
+   name="o_hps_write"
+   internal="HPS_Write1b.external_connection"
    type="conduit"
    dir="end" />
  <interface
-   name="o_hps_clk"
-   internal="HPS_CLK1b.external_connection"
+   name="o_hps_read"
+   internal="HPS_Read1b.external_connection"
    type="conduit"
    dir="end" />
  <interface
@@ -1120,7 +1120,7 @@
    kind="altera_avalon_pio"
    version="13.1"
    enabled="1"
-   name="VGAMuxSelect1b">
+   name="MuxSelect1b">
   <parameter name="bitClearingEdgeCapReg" value="true" />
   <parameter name="bitModifyingOutReg" value="true" />
   <parameter name="captureEdge" value="true" />
@@ -1138,7 +1138,7 @@
    kind="altera_avalon_pio"
    version="13.1"
    enabled="1"
-   name="RAWMuxSelect1b">
+   name="HPS_Write1b">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="true" />
   <parameter name="captureEdge" value="false" />
@@ -1152,7 +1152,7 @@
   <parameter name="width" value="1" />
   <parameter name="clockRate" value="100000000" />
  </module>
- <module kind="altera_avalon_pio" version="13.1" enabled="1" name="HPS_CLK1b">
+ <module kind="altera_avalon_pio" version="13.1" enabled="1" name="HPS_Read1b">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="true" />
   <parameter name="captureEdge" value="false" />
@@ -1342,7 +1342,7 @@
    kind="clock"
    version="13.1"
    start="sys_sdram_pll_0.sys_clk"
-   end="VGAMuxSelect1b.clk" />
+   end="MuxSelect1b.clk" />
  <connection
    kind="reset"
    version="13.1"
@@ -1367,17 +1367,17 @@
    kind="reset"
    version="13.1"
    start="sys_sdram_pll_0.reset_source"
-   end="VGAMuxSelect1b.reset" />
+   end="MuxSelect1b.reset" />
  <connection
    kind="reset"
    version="13.1"
    start="hps_0.h2f_reset"
-   end="VGAMuxSelect1b.reset" />
+   end="MuxSelect1b.reset" />
  <connection
    kind="avalon"
    version="13.1"
    start="hps_0.h2f_lw_axi_master"
-   end="VGAMuxSelect1b.s1">
+   end="MuxSelect1b.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00a0" />
   <parameter name="defaultConnection" value="false" />
@@ -1404,12 +1404,12 @@
    kind="clock"
    version="13.1"
    start="sys_sdram_pll_0.sys_clk"
-   end="RAWMuxSelect1b.clk" />
+   end="HPS_Write1b.clk" />
  <connection
    kind="clock"
    version="13.1"
    start="sys_sdram_pll_0.sys_clk"
-   end="HPS_CLK1b.clk" />
+   end="HPS_Read1b.clk" />
  <connection
    kind="clock"
    version="13.1"
@@ -1419,12 +1419,12 @@
    kind="reset"
    version="13.1"
    start="sys_sdram_pll_0.reset_source"
-   end="RAWMuxSelect1b.reset" />
+   end="HPS_Write1b.reset" />
  <connection
    kind="reset"
    version="13.1"
    start="sys_sdram_pll_0.reset_source"
-   end="HPS_CLK1b.reset" />
+   end="HPS_Read1b.reset" />
  <connection
    kind="reset"
    version="13.1"
@@ -1443,7 +1443,7 @@
    kind="avalon"
    version="13.1"
    start="hps_0.h2f_lw_axi_master"
-   end="HPS_CLK1b.s1">
+   end="HPS_Read1b.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0060" />
   <parameter name="defaultConnection" value="false" />
@@ -1452,7 +1452,7 @@
    kind="avalon"
    version="13.1"
    start="hps_0.h2f_lw_axi_master"
-   end="RAWMuxSelect1b.s1">
+   end="HPS_Write1b.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0040" />
   <parameter name="defaultConnection" value="false" />
