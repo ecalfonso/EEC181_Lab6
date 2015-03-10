@@ -240,8 +240,8 @@ Sdram_Control_4Port	u7	(
 							//	FIFO Write Side 2
 							.WR2_DATA(	{1'b0,sCCD_G[6:2],sCCD_R[11:2]}),
 							.WR2(sCCD_DVAL),
-							.WR2_ADDR(22'h100000),		// Memory start for the second section of memory - why can we not write data into one memory block?
-							.WR2_MAX_ADDR(22'h100000+640*480),
+							.WR2_ADDR(640*480 + 1'h4),		// Memory start for the second section of memory - why can we not write data into one memory block?
+							.WR2_MAX_ADDR(640*480 + 640*480 + 1'h4),
 							.WR2_LENGTH(256),
 							.WR2_LOAD(!DLY_RST_0),
 							.WR2_CLK(~CCD_PIXCLK),
@@ -259,8 +259,8 @@ Sdram_Control_4Port	u7	(
 							//	FIFO Read Side 2
 						   .RD2_DATA(Read_DATA2),
 							.RD2(Read),
-							.RD2_ADDR(22'h100000), // Memory start address
-							.RD2_MAX_ADDR(22'h100000+640*480),	// Allocate enough space for whole 640 x 480 display
+							.RD2_ADDR(640*480 + 1'h4), // Memory start address
+							.RD2_MAX_ADDR(640*480 + 640*480 + 1'h4),	// Allocate enough space for whole 640 x 480 display
 							.RD2_LENGTH(256),	// 8 bits long data storage
 				        	.RD2_LOAD(!DLY_RST_0),
 							.RD2_CLK(~VGA_CTRL_CLK),
