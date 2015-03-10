@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab3test
-Tue Mar 10 09:48:04 2015
+Tue Mar 10 10:38:36 2015
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -682,7 +682,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                 ;
 +---------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Mar 10 09:48:03 2015      ;
+; Analysis & Synthesis Status     ; Successful - Tue Mar 10 10:38:35 2015      ;
 ; Quartus II 64-Bit Version       ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                   ; lab3test                                   ;
 ; Top-level Entity Name           ; lab3test                                   ;
@@ -959,9 +959,9 @@ applicable agreement for further details.
 ;                                             ;                                                                                                                                      ;
 ; Combinational ALUT usage for logic          ; 5275                                                                                                                                 ;
 ;     -- 7 input functions                    ; 71                                                                                                                                   ;
-;     -- 6 input functions                    ; 617                                                                                                                                  ;
-;     -- 5 input functions                    ; 602                                                                                                                                  ;
-;     -- 4 input functions                    ; 1731                                                                                                                                 ;
+;     -- 6 input functions                    ; 618                                                                                                                                  ;
+;     -- 5 input functions                    ; 600                                                                                                                                  ;
+;     -- 4 input functions                    ; 1732                                                                                                                                 ;
 ;     -- <=3 input functions                  ; 2254                                                                                                                                 ;
 ;                                             ;                                                                                                                                      ;
 ; Dedicated logic registers                   ; 4236                                                                                                                                 ;
@@ -4094,7 +4094,7 @@ Encoding Type:  One-Hot
 ; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |lab3test|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|mixer_addr_reg[2]                                                                                                                                                           ;
 ; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |lab3test|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_rom_sr:hub_info_reg|word_counter[0]                                                                                                                                     ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |lab3test|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|irsr_reg[2]                                                                                                                                                                 ;
-; 34:1               ; 4 bits    ; 88 LEs        ; 60 LEs               ; 28 LEs                 ; Yes        ; |lab3test|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|design_hash_reg[0]                                                                                                                                                          ;
+; 34:1               ; 4 bits    ; 88 LEs        ; 64 LEs               ; 24 LEs                 ; Yes        ; |lab3test|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|design_hash_reg[0]                                                                                                                                                          ;
 ; 20:1               ; 4 bits    ; 52 LEs        ; 32 LEs               ; 20 LEs                 ; Yes        ; |lab3test|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_rom_sr:hub_info_reg|WORD_SR[0]                                                                                                                                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -5023,24 +5023,20 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 +---------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Sdram_Control_4Port:u7 ;
-+----------------+--------+-------------------------------------------+
-; Parameter Name ; Value  ; Type                                      ;
-+----------------+--------+-------------------------------------------+
-; INIT_PER       ; 25000  ; Signed Integer                            ;
-; REF_PER        ; 1024   ; Signed Integer                            ;
-; SC_CL          ; 3      ; Signed Integer                            ;
-; SC_RCD         ; 3      ; Signed Integer                            ;
-; SC_RRD         ; 2      ; Signed Integer                            ;
-; SC_PM          ; 1      ; Signed Integer                            ;
-; SC_BL          ; 1      ; Signed Integer                            ;
-; SDR_BL         ; 111    ; Unsigned Binary                           ;
-; SDR_BT         ; 0      ; Unsigned Binary                           ;
-; SDR_CL         ; 011    ; Unsigned Binary                           ;
-; IMG1_START     ; 0      ; Signed Integer                            ;
-; IMG1_END       ; 307200 ; Signed Integer                            ;
-; IMG2_START     ; 307204 ; Signed Integer                            ;
-; IMG2_END       ; 614404 ; Signed Integer                            ;
-+----------------+--------+-------------------------------------------+
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; INIT_PER       ; 25000 ; Signed Integer                             ;
+; REF_PER        ; 1024  ; Signed Integer                             ;
+; SC_CL          ; 3     ; Signed Integer                             ;
+; SC_RCD         ; 3     ; Signed Integer                             ;
+; SC_RRD         ; 2     ; Signed Integer                             ;
+; SC_PM          ; 1     ; Signed Integer                             ;
+; SC_BL          ; 1     ; Signed Integer                             ;
+; SDR_BL         ; 111   ; Unsigned Binary                            ;
+; SDR_BT         ; 0     ; Unsigned Binary                            ;
+; SDR_CL         ; 011   ; Unsigned Binary                            ;
++----------------+-------+--------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -15130,7 +15126,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Tue Mar 10 09:47:19 2015
+    Info: Processing started: Tue Mar 10 10:37:52 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab3test -c lab3test
 Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
 Info (12021): Found 1 design units, including 1 entities, in source file v/line_buffer1.v
@@ -15365,110 +15361,102 @@ Info (12128): Elaborating entity "SEG7_LUT_8" for hierarchy "SEG7_LUT_8:u5"
 Info (12128): Elaborating entity "SEG7_LUT" for hierarchy "SEG7_LUT_8:u5|SEG7_LUT:u0"
 Info (12128): Elaborating entity "Sdram_Control_4Port" for hierarchy "Sdram_Control_4Port:u7"
 Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(365): truncated value with size 32 to match size of target (10)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(414): truncated value with size 32 to match size of target (23)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(415): truncated value with size 32 to match size of target (23)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(416): truncated value with size 32 to match size of target (23)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(417): truncated value with size 32 to match size of target (23)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(419): truncated value with size 32 to match size of target (23)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(420): truncated value with size 32 to match size of target (23)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(421): truncated value with size 32 to match size of target (23)
-Warning (10230): Verilog HDL assignment warning at Sdram_Control_4Port.v(422): truncated value with size 32 to match size of target (23)
-Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(410): inferring latch(es) for variable "rWR1_MAX_ADDR", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(410): inferring latch(es) for variable "rRD1_MAX_ADDR", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(410): inferring latch(es) for variable "rWR2_MAX_ADDR", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(410): inferring latch(es) for variable "rRD2_MAX_ADDR", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[0]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[1]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[2]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[3]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[4]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[5]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[6]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[7]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[8]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[9]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[10]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[11]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[12]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[13]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[14]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[15]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[16]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[17]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[18]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[19]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[20]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[21]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD2_MAX_ADDR[22]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[0]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[1]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[2]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[3]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[4]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[5]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[6]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[7]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[8]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[9]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[10]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[11]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[12]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[13]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[14]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[15]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[16]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[17]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[18]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[19]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[20]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[21]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR2_MAX_ADDR[22]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[0]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[1]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[2]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[3]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[4]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[5]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[6]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[7]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[8]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[9]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[10]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[11]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[12]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[13]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[14]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[15]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[16]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[17]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[18]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[19]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[20]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[21]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rRD1_MAX_ADDR[22]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[0]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[1]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[2]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[3]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[4]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[5]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[6]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[7]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[8]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[9]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[10]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[11]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[12]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[13]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[14]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[15]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[16]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[17]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[18]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[19]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[20]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[21]" at Sdram_Control_4Port.v(410)
-Info (10041): Inferred latch for "rWR1_MAX_ADDR[22]" at Sdram_Control_4Port.v(410)
+Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(403): inferring latch(es) for variable "rWR1_MAX_ADDR", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(403): inferring latch(es) for variable "rRD1_MAX_ADDR", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(403): inferring latch(es) for variable "rWR2_MAX_ADDR", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at Sdram_Control_4Port.v(403): inferring latch(es) for variable "rRD2_MAX_ADDR", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[0]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[1]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[2]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[3]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[4]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[5]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[6]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[7]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[8]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[9]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[10]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[11]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[12]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[13]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[14]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[15]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[16]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[17]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[18]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[19]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[20]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[21]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD2_MAX_ADDR[22]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[0]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[1]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[2]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[3]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[4]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[5]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[6]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[7]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[8]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[9]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[10]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[11]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[12]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[13]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[14]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[15]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[16]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[17]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[18]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[19]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[20]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[21]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR2_MAX_ADDR[22]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[0]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[1]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[2]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[3]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[4]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[5]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[6]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[7]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[8]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[9]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[10]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[11]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[12]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[13]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[14]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[15]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[16]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[17]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[18]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[19]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[20]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[21]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rRD1_MAX_ADDR[22]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[0]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[1]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[2]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[3]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[4]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[5]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[6]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[7]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[8]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[9]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[10]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[11]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[12]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[13]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[14]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[15]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[16]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[17]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[18]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[19]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[20]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[21]" at Sdram_Control_4Port.v(403)
+Info (10041): Inferred latch for "rWR1_MAX_ADDR[22]" at Sdram_Control_4Port.v(403)
 Info (12128): Elaborating entity "control_interface" for hierarchy "Sdram_Control_4Port:u7|control_interface:control1"
 Warning (10230): Verilog HDL assignment warning at control_interface.v(162): truncated value with size 32 to match size of target (16)
 Warning (10230): Verilog HDL assignment warning at control_interface.v(167): truncated value with size 32 to match size of target (16)
@@ -16007,11 +15995,11 @@ Info (21057): Implemented 8100 device resources after synthesis - the final reso
     Info (21064): Implemented 128 RAM segments
     Info (21065): Implemented 4 PLLs
     Info (21066): Implemented 1 delay-locked loops
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 200 warnings
-    Info: Peak virtual memory: 813 megabytes
-    Info: Processing ended: Tue Mar 10 09:48:04 2015
-    Info: Elapsed time: 00:00:45
-    Info: Total CPU time (on all processors): 00:00:44
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 192 warnings
+    Info: Peak virtual memory: 811 megabytes
+    Info: Processing ended: Tue Mar 10 10:38:36 2015
+    Info: Elapsed time: 00:00:44
+    Info: Total CPU time (on all processors): 00:00:43
 
 
 +------------------------------------------+

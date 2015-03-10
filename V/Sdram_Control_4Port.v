@@ -400,26 +400,19 @@ begin
 	end
 end
 
-//	Internal Address & Length Control
-/* Address in SDRAM for the camera image */
-parameter IMG1_START 	= 0;
-parameter IMG1_END 		= 307200; 	// 640*480
-parameter IMG2_START 	= 307204;	// 640*480 + 1'h4
-parameter IMG2_END		= 614404;	//640*480 + 1'h4 + 640*480
-
 always@(posedge CLK or negedge RESET_N)
 begin
 	if(!RESET_N)
 	begin
-		rWR1_ADDR		<=	IMG1_START;
-		rWR1_MAX_ADDR	<=	IMG1_END;
-		rRD1_ADDR		<=	IMG1_START;
-		rRD1_MAX_ADDR	<=	IMG1_END;
+		rWR1_ADDR		<=	WR1_ADDR;
+		rWR1_MAX_ADDR	<=	WR1_MAX_ADDR;
+		rRD1_ADDR		<=	RD1_ADDR;
+		rRD1_MAX_ADDR	<=	RD1_MAX_ADDR;
 		
-		rWR2_ADDR		<=	IMG2_START;
-		rWR2_MAX_ADDR	<=	IMG2_END;
-		rRD2_ADDR		<=	IMG2_START;
-		rRD2_MAX_ADDR	<=	IMG2_END;
+		rWR2_ADDR		<=	WR2_ADDR;
+		rWR2_MAX_ADDR	<=	WR2_MAX_ADDR;
+		rRD2_ADDR		<=	RD2_ADDR;
+		rRD2_MAX_ADDR	<=	RD2_MAX_ADDR;
 		
 		rWR1_LENGTH		<=	256;
 		rWR2_LENGTH		<=	256;
