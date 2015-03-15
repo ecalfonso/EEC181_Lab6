@@ -17,6 +17,8 @@ module lab3test(
 	output [6:0] HEX1,
 	output [6:0] HEX2,
 	output [6:0] HEX3,
+	output [6:0] HEX4,
+	output [6:0] HEX5,
 
 	// LEDs
 	output [9:0] LEDR,
@@ -137,7 +139,7 @@ always@(posedge CLOCK_50)	rClk	<=	rClk+1;
 
 assign CCD_MCLK = rClk[0]; // 25MHZ
 
-assign	LEDR		=	Y_Cont;
+assign LEDR =	counter;
 
 assign	VGA_R		=	oVGA_R[9:2];
 assign	VGA_G		=	oVGA_G[9:2];
@@ -150,16 +152,12 @@ begin
 	rCCD_FVAL	<=	CCD_FVAL;
 end
 
-/* Our custom wires/regs */
-wire HPS_Start_Signal;
-wire HPS_Mux_Select;
-
 VGA_Controller		u1	(	//	Host Side
 							.oRequest(Read),				// Read Request is sent to the SDRAM when the VGA pixel scan is at the correct x and y pixel location in the active area
 
 							.iRed(Read_DATA2[9:0]),
-							.iGreen({Read_DATA1[14:10],Read_DATA2[14:10]}),
-							.iBlue(Read_DATA1[9:0]),
+							.iGreen(Read_DATA2[9:0]),
+							.iBlue(Read_DATA2[9:0]),
 							
 							//	VGA Side
 							.oVGA_R(oVGA_R),
@@ -215,11 +213,11 @@ SEG7_LUT_8 			u5	(
 							.oSEG1(HEX1),
 							.oSEG2(HEX2),
 							.oSEG3(HEX3),
-							.oSEG4(),
-							.oSEG5(),
+							.oSEG4(HEX4),
+							.oSEG5(HEX5),
 							.oSEG6(),
 							.oSEG7(),
-							.iDIG (Frame_Cont[31:0])
+							.iDIG (counter)
 						);
 
 /* Address in SDRAM for the camera image */
@@ -227,40 +225,10 @@ parameter IMG1_START 	= 0;
 parameter IMG1_END 		= 307200; 	// 640*480
 parameter IMG2_START 	= 307204;	// 640*480 + 1'h4
 parameter IMG2_END		= 614404;	// 640*480 + 1'h4 + 640*480
-						
-/* MUX for HPS to control SDRAM Controller*/ 
-reg rHPS_Mux_Select;
 
-always@(rCCD_FVAL or rCCD_LVAL)
-begin
-	if ({rCCD_FVAL,rCCD_LVAL} == 2'b00)
-	begin
-		if (HPS_Mux_Select == 0)	rHPS_Mux_Select = 0;
-		else								rHPS_Mux_Select = 1;
-	end
-end
-
-wire wRead;
-wire wWrite;
-
-wire [31:0] FIFO1_addr_start;
-wire [31:0] FIFO1_addr_end;
-wire [31:0] FIFO2_addr_start;
-wire [31:0] FIFO2_addr_end;
-
-wire [15:0] sdram_in1;
-wire [15:0] sdram_in2;
-
-assign wRead 	= rHPS_Mux_Select ? 0 : Read;
-assign wWrite 	= rHPS_Mux_Select ? 0 : sCCD_DVAL;
-
-assign FIFO1_addr_start 	= rHPS_Mux_Select ? 0 : IMG1_START;
-assign FIFO1_addr_end	 	= rHPS_Mux_Select ? 0 : IMG1_END;
-assign FIFO2_addr_start 	= rHPS_Mux_Select ? 0 : IMG2_START;
-assign FIFO2_addr_end	 	= rHPS_Mux_Select ? 0 : IMG2_END;
-
-assign sdram_in1 = rHPS_Mux_Select ? 0 : {1'b0,sCCD_G[11:7],sCCD_B[11:2]};
-assign sdram_in2 = rHPS_Mux_Select ? 0 : {1'b0,sCCD_G[6:2],sCCD_R[11:2]};
+reg [31:0] counter;
+wire HPSClk;
+always@(posedge HPSClk)	counter <= counter +1;
 
 Sdram_Control_4Port	u7	(	
 							//	HOST Side
@@ -268,20 +236,20 @@ Sdram_Control_4Port	u7	(
 							.CLK(sdram_ctrl_clk),
 
 							//	FIFO Write Side 1
-							.WR1_DATA(sdram_in1),
-							.WR1(wWrite),
-							.WR1_ADDR(FIFO1_addr_start),					// Memory start for one section of the memory
-							.WR1_MAX_ADDR(FIFO1_addr_end),
+							.WR1_DATA({1'b0,sCCD_G[11:7],sCCD_B[11:2]}),
+							.WR1(sCCD_DVAL),
+							.WR1_ADDR(IMG1_START),					// Memory start for one section of the memory
+							.WR1_MAX_ADDR(IMG1_END),
 							.WR1_LENGTH(256),
 							.WR1_LOAD(!DLY_RST_0),
 							.WR1_CLK(~CCD_PIXCLK),		// This clock is directly from the CCD Camera Module, the Camera controls the write to memory
 							// CCD data is written on the falling edge of the CCD_PIXCLK
 
 							//	FIFO Write Side 2
-							.WR2_DATA(sdram_in2),
-							.WR2(wWrite),
-							.WR2_ADDR(FIFO2_addr_start),		// Memory start for the second section of memory - why can we not write data into one memory block?
-							.WR2_MAX_ADDR(FIFO2_addr_end),
+							.WR2_DATA({1'b0,sCCD_G[6:2],sCCD_R[11:2]}),
+							.WR2(sCCD_DVAL),
+							.WR2_ADDR(IMG2_START),		// Memory start for the second section of memory - why can we not write data into one memory block?
+							.WR2_MAX_ADDR(IMG2_END),
 							.WR2_LENGTH(256),
 							.WR2_LOAD(!DLY_RST_0),
 							.WR2_CLK(~CCD_PIXCLK),
@@ -289,18 +257,18 @@ Sdram_Control_4Port	u7	(
 
 							//	FIFO Read Side 1
 						   .RD1_DATA(Read_DATA1),
-				        	.RD1(wRead),
-				        	.RD1_ADDR(FIFO1_addr_start),
-							.RD1_MAX_ADDR(FIFO1_addr_end),
+				        	.RD1(1),
+				        	.RD1_ADDR(IMG1_START),
+							.RD1_MAX_ADDR(IMG1_END),
 							.RD1_LENGTH(256),
 							.RD1_LOAD(!DLY_RST_0),
 							.RD1_CLK(~VGA_CTRL_CLK),
 							
 							//	FIFO Read Side 2
 						   .RD2_DATA(Read_DATA2),
-							.RD2(wRead),
-							.RD2_ADDR(FIFO2_addr_start), // Memory start address
-							.RD2_MAX_ADDR(FIFO2_addr_end),	// Allocate enough space for whole 640 x 480 display
+							.RD2(Read),
+							.RD2_ADDR(IMG2_START), // Memory start address
+							.RD2_MAX_ADDR(IMG2_END),	// Allocate enough space for whole 640 x 480 display
 							.RD2_LENGTH(256),	// 8 bits long data storage
 				        	.RD2_LOAD(!DLY_RST_0),
 							.RD2_CLK(~VGA_CTRL_CLK),
@@ -361,11 +329,11 @@ I2C_CCD_Config 		u8	(
 		  .o_startsignal_1b_export  (HPS_Start_Signal),
 		  
 		  /* I/O for taking in and throwing out data */
-		  //.i_data_32b_export        (),
-        //.o_data_32b_export        (), 
+		  .i_data_32b_export        (Read_DATA1[9:0]),
+        .o_data_32b_export        (HPS_Data_Out), 
 		  
 		  /* Select line for when HPS takes over SDRAM controller */ 
-		  .o_muxselect_1b_export    (HPS_Mux_Select),
+		  .o_muxselect_1b_export    (HPSClk),
         
 		  /* Lines for when HPS is ready to write/validate o_data
 				and when ready to read/ready i_data */
